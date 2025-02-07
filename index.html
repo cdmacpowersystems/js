@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC Connection</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        #status { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Connect to PLC (Port 44818)</h1>
+    <button onclick="connectToPLC()">Check Connection</button>
+    <p id="status">Status: Not checked</p>
+
+    <script>
+        function connectToPLC() {
+            fetch("/connect")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("status").innerText = "Status: " + data.status;
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "Status: Connection failed";
+                });
+        }
+    </script>
+</body>
+</html>
